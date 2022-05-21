@@ -8,4 +8,4 @@ s.text('🥗 Kale, Spinach & Rocket Smoothie')
 s.text('🐔 Hard-Boiled Free-Range')
 s.text('🥑🍞 Avocado Toast')
 
-streamlit.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
+s.header('🍌🥭 Build Your Own Fruit Smoothie 🥝🍇')
