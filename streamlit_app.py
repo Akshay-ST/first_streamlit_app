@@ -1,4 +1,3 @@
-
 import streamlit 
 
-streamlit.tilte('My Parents New Healthy Diner')
+streamlit.title('My Parents New Healthy Diner')
