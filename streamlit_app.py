@@ -1,4 +1,4 @@
 
-import streamlit as s
+import streamlit 
 
-s.tilte('My Parents New Healthy Diner')
+streamlit.tilte('My Parents New Healthy Diner')
