@@ -25,6 +25,6 @@ fruits_to_show = my_fruit_list.loc[fruits_selected]
 s.dataframe(fruits_to_show)
 
 #New Section to import FruityVice API response
-import request as r
+import requests as r
 fruityvice_response = r.get("https://Fruityvice.com/api/fruit/watermelon")
 s.text(fruityvice_response)
