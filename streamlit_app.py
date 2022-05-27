@@ -27,5 +27,8 @@ s.dataframe(fruits_to_show)
 #New Section to import FruityVice API response
 s.header('Fruityvice Fruit Advice!')
 import requests as r
-fruityvice_response = r.get("https://Fruityvice.com/api/fruit/watermelon")
-s.text(fruityvice_response.json())
+fruityvice_response = r.get("https://Fruityvice.com/api/fruit/" + "Kiwi")
+#s.text(fruityvice_response.json()) 
+
+fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+s.dataframe(fruityvice_normalized)
