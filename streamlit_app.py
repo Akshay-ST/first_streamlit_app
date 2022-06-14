@@ -32,11 +32,11 @@ s.header('Fruityvice Fruit Advice!')
 try:
     fruit_choice = s.text_input('What fruit would you like information about?')
     if not fruit_choice:
-      s.error("Please select a fruit to get information.")
+        s.error("Please select a fruit to get information.")
      else:
-      fruityvice_response = r.get("https://Fruityvice.com/api/fruit/" + fruit_choice)
-      fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
-      s.dataframe(fruityvice_normalized)
+        fruityvice_response = r.get("https://Fruityvice.com/api/fruit/" + fruit_choice)
+        fruityvice_normalized = pd.json_normalize(fruityvice_response.json())
+        s.dataframe(fruityvice_normalized)
 
 #s.text(fruityvice_response.json()) 
 #fruityvice_response = r.get("https://Fruityvice.com/api/fruit/" + fruit_choice)
