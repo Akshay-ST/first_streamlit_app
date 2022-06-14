@@ -53,18 +53,44 @@ try:
 except URLError as e:
   s.error()
 
-my_cnx = sf.connect(**s.secrets["snowflake"])
-my_cur = my_cnx.cursor()
+##my_cnx = sf.connect(**s.secrets["snowflake"])
+##my_cur = my_cnx.cursor()
 #my_cur.execute("SELECT CURRENT_USER(), CURRENT_ACCOUNT(), CURRENT_REGION()")
-my_cur.execute("SELECT * from fruit_load_list")
-my_data_row = my_cur.fetchall()
-s.header("The fruit list contains:")
-s.dataframe(my_data_row)
+##my_cur.execute("SELECT * from fruit_load_list")
+##my_data_row = my_cur.fetchall()
+##s.header("The fruit list contains:")
+##s.dataframe(my_data_row)
 
-s.stop() 
+s.header("The Fruit Load List contains:")
+#Snowflake relate function
+def get_fruit_load_list():
+	my_cnx = sf.connect(**s.secrets["snowflake"])
+	with my_cnx.cursor() as my_cur:
+		my_cur.execute("select * from fruit_load_list")
+		return my_cur.fetchall()
+
+#Add button to load the fruit
+if s.button('Get fruit load List'):
+	my_data_rows = get_fruit_load_list()
+	s.dataframe(my_data_rows)
+
+
+#s.stop() 
   
+#add_my_fruit = s.text_input('What fruit would you like to add?')
+#input_qur = "insert into fruit_load_list values (\'" + add_my_fruit + "\');"
+#my_cur.execute(input_qur)
+#s.write('Thanks for adding ',add_my_fruit)
+
+#allow end user to add fruit to the list
+def insert_row_snowflake(new_fruit):
+	my_cnx = sf.connect(**s.secrets["snowflake"])
+	with my_cnx.cursor() as my_cur:
+		my_cur.execute("insert into fruit_load_list value (\'" + new_fruit + "\')")
+		return "Thanks for adding " + new_fruit
+
 add_my_fruit = s.text_input('What fruit would you like to add?')
-if (add_my_fruit != ''):
-  input_qur = "insert into fruit_load_list values (\'" + add_my_fruit + "\');"
-  my_cur.execute(input_qur)
-  s.write('Thanks for adding ',add_my_fruit)
+if s.button('Add a Fruit to the list'):
+	back_from_function = insert_row_snowflake(add_my_fruit)
+	s.text(back_from_function)
+			 
